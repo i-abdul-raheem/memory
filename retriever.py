@@ -7,7 +7,7 @@ class Retriever:
         self.vector_store = vector_store
         self.embedding_manager = embedding_manager
 
-    def retrieve(self, query: str, top_k: int = 3, score_threshold: float = 0.0):
+    def retrieve(self, query: str, top_k: int = 3, score_threshold: float = 0.0) -> list:
         try:
             query_embeddings = self.embedding_manager.generate_embeddings([query])[0]
         except Exception as e:
@@ -35,7 +35,7 @@ class Retriever:
             for i, (doc_id, document, metadata, distance) in enumerate(
                 zip(ids, documents, metadatas, distances)
             ):
-                similarity_score = 1 - distance
+                similarity_score = 2 - distance
                 if similarity_score >= score_threshold:
                     results.append(
                         {
