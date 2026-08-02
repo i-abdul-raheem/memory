@@ -1,6 +1,6 @@
 from vector_store import VectorStore
-from loader import LoadText
 from embedding_manager import EmbeddingManager
+from loader import LoadText
 
 
 class DataIngestion:
@@ -15,10 +15,9 @@ class DataIngestion:
 
     def __init__(
         self,
+        embedding_manager: EmbeddingManager,
+        vector_store: VectorStore,
         data_path: str = "data",
-        embeddings_model: str = "all-MiniLM-L6-v2",
-        presist_directory: str = "data/vector_store",
-        collection_name: str = "stt_documents",
     ):
         """
         Initialize data ingestion pipeline
@@ -30,10 +29,8 @@ class DataIngestion:
             collection_name (str, optional): _description_. Defaults to "stt_documents".
         """
         self._data_loader = LoadText(path=data_path)
-        self.embedding_manager = EmbeddingManager(model_name=embeddings_model)
-        self.vector_store = VectorStore(
-            presist_directory=presist_directory, collection_name=collection_name
-        )
+        self._embedding_manager = embedding_manager
+        self._vector_store = vector_store
         self._chunks = None
         self._embeddings = None
 
@@ -42,5 +39,5 @@ class DataIngestion:
         Ingest data to chromadb vector store
         """
         self._chunks = self._data_loader.split_documents()
-        self._embeddings = self.embedding_manager.generate_embeddings(self._chunks)
-        self.vector_store.add_documents(self._chunks, self._embeddings)
+        self._embeddings = self._embedding_manager.generate_embeddings(self._chunks)
+        self._vector_store.add_documents(self._chunks, self._embeddings)
