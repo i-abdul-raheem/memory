@@ -7,3 +7,4 @@ WHISPER_MODEL_NAME: str = "small"
 TRANSCRIPTS_DIR = Path("data/transcripts")
 PROCESSING_DIR = Path("data/processing")
 RECORDINGS_DIR = Path("data/recordings")
+LLM_NAME = "qwen3:4b"
