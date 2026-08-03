@@ -1,14 +1,14 @@
 from sentence_transformers import SentenceTransformer
 import numpy as np
-
+from constants import EMBEDDING_MODEL_NAME
 
 class EmbeddingManager:
-    def __init__(self, model_name="all-MiniLM-L6-v2"):
+    def __init__(self, model_name=EMBEDDING_MODEL_NAME):
         """_summary_
         Initialize the embedding manager
 
         Args:
-            model_name (str, optional): _description_. Defaults to "all-MiniLM-L6-v2".
+            model_name (str, optional): Defaults to "all-MiniLM-L6-v2".
         """
         self.model_name = model_name
         self.model = None

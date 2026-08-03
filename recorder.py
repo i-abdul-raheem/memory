@@ -9,16 +9,18 @@ import sounddevice as sd
 import whisper
 from scipy.io.wavfile import write
 
+from constants import RECORDINGS_DIR, TRANSCRIPTS_DIR, WHISPER_MODEL_NAME
+
 SAMPLE_RATE = 16_000
 CHANNELS = 1
 CHUNK_SECONDS = 30                 # Lower = quicker partial results
 CHUNK_FRAMES = SAMPLE_RATE * CHUNK_SECONDS
-MODEL_NAME = "small"                # Use "tiny" on very limited hardware
+MODEL_NAME = WHISPER_MODEL_NAME                # Use "tiny" on very limited hardware
 TASK = "translate"                 # Change to "transcribe" to keep original language
 MAX_PENDING_CHUNKS = 6             # About one minute of queued audio
 
-audio_dir = Path("data/recordings")
-text_dir = Path("data/transcripts")
+audio_dir = RECORDINGS_DIR
+text_dir = TRANSCRIPTS_DIR
 audio_dir.mkdir(parents=True, exist_ok=True)
 text_dir.mkdir(parents=True, exist_ok=True)
 

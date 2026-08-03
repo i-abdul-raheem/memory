@@ -5,6 +5,8 @@ import chromadb
 from chromadb.api.types import Metadata
 import numpy as np
 
+from constants import PRESIST_DIRECTORY, COLLECTION_NAME
+
 
 class VectorStore:
     """
@@ -13,8 +15,8 @@ class VectorStore:
 
     def __init__(
         self,
-        presist_directory: str = "data/vector_store",
-        collection_name: str = "stt_documents",
+        presist_directory: str = PRESIST_DIRECTORY,
+        collection_name: str = COLLECTION_NAME,
     ):
         """
 

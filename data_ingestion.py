@@ -17,7 +17,7 @@ class DataIngestion:
         self,
         embedding_manager: EmbeddingManager,
         vector_store: VectorStore,
-        data_path: str = "data/transcripts",
+        data_path: str = "data/processing",
     ):
         """
         Initialize data ingestion pipeline
