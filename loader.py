@@ -6,7 +6,7 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 class LoadText:
-    def __init__(self, path="data"):
+    def __init__(self, path="data/transcripts"):
         path = Path(path)
         if not os.path.exists(path):
             os.mkdir(path)
